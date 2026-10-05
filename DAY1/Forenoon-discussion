@@ -1,0 +1,383 @@
+AI
+---
+ |___ ML
+       |__ DL
+	    |
+	    |__GenAI
+	    |
+	    |___Agentic AI
+--------------------------------------------------------------------------
+Python - General purpose programming language 
+       - Dynamic type programming
+         ==========================
+	  app_name = "web2.0" 
+	  ...
+	  ...
+          port = 8080
+	  ...
+-------------------------------------------------------------------------------------
+python  -> everything is class <--> object
+			 ------------------
+
+value - object
+|
+10 
+
+type - class
+|
+int 
+
+
+10 - int  - class
+10.0  - float - class
+'10' - str - class
+
+" " - str - class
+
+True
+False
+-------->bool -class
+NoneType - class
+
+int float complex bool NoneType 
+str bytes list tuple dict set 
+------------------------------// native class/types
+
+type() 
+-------
+ |-> we can determine the python type
+
+
+variable_name = value  <== initialization 
+	     
+ n = 45 
+ dept = "sales" # <or> dept = 'sales'
+ cost = 100.45
+ status = True
+ ------
+ |
+ variable names are user defined 
+
+variable naming rule(s)
+------------------------
+1. variable name starts with a-zA-Z_ 
+2. variable name not starts with digits (ex: 5var = 10 <-- Error ;  var5 = 10 OK)
+3. variable name not allows space,specialchars (ex: $cost = 10.45 ; fname lname = "Raj shiv" # Error)
+
+dept = "sales"
+print(dept) ------->sales 
+
+print(Dept) ------->NameError 
+
+print('dept') ---->dept <== ordinary string
+
+---------------------------------------------------------
+dept = 'sales'
+
+# working dept is:sales
+# ----------------======
+#  |
+# How to combine user defined string and named variable ?
+#
+
+print(working dept is:dept) //Error
+Vs
+print('working dept is:dept') ---> working dept is:dept 
+      |____________________|
+	|->str
+
+# How to combine user defined string and named variable ?
+#
+# way-1
+# ---------
+print('working dept is:',dept) # 1st style 
+                        
+# way-2 
+#--------
+print('working dept is:%s'%(dept)) # 2nd style <-- extend from C program
+		      
+# way-3
+#---------
+print('working dept is:{}'.format(dept)) # 3rd style 
+
+# way-4
+#----------
+print(f'working dept is:{dept}') # 4th style 
+#####################################################
+
+python supports - multiline string
+------------------------------------
+print("data1\ndata2\ndata3\ndata4") 
+-----
+data1
+data2
+data3
+data4
+--------//4lines
+
+print('''data1
+data2
+data3
+data4''')
+------------//
+
+var='''data1
+data2
+data3
+data4'''
+--------------//string initialization
+
+###############################################################
+typecasting
+------------
+ change from current type ->target type
+
+n = 15 
+type(n) -><class 'int'>
+
+n value -> convert to float
+		      =====
+			|-> float(n) ->15.0
+
+n value -> convert to str
+		     =====
+			|-> str(n) -> '15'
+
+###############################################################
+
+
+	Keyboard--<--input()-----Python--------print()-->----Monitor
+		    =========
+
+ variable = input('prompt')
+ --------
+   |-> 
+
+>>> n = 15
+>>> type(n)
+<class 'int'>
+>>>
+>>> float(n)
+15.0
+>>> str(n)
+'15'
+>>> type(n)
+<class 'int'>
+>>> n
+15
+>>> cost=2432.56
+>>> type(cost)
+<class 'float'>
+>>> int(cost)
+2432
+>>> str(cost)
+'2432.56'
+>>>
+>>> s1='45'
+>>> type(s1)
+<class 'str'>
+>>>
+>>> int(s1)
+45
+>>> int(s1)+100
+145
+>>> int(s1)*9.44
+424.79999999999995
+>>>
+>>> n = 45
+>>> type(n)
+<class 'int'>
+>>>
+>>> n = str(n)
+>>> type(n)
+<class 'str'>
+>>> n
+'45'
+>>>
+>>> input('Enter your name:')
+Enter your name:leo
+'leo'
+>>> input('Enter n value:')
+Enter n value:45
+'45'
+>>> input('Enter n value:')
+Enter n value:
+''
+>>> n = input('Enter n value:')
+Enter n value:45
+>>>
+>>> type(n)
+<class 'str'>
+>>> n
+'45'
+>>> int(n)
+45
+>>> float(n)
+45.0
+>>> n = input('Enter n value:')
+Enter n value:56
+>>> m = input(f'Enter {n} value code:')
+Enter 56 value code:
+>>>
+###############################################################
+Python Operators
+------------------
+1. Numerical operators
+-------------------------
+ arithmetic operations ->   +  -  *  /  //  %  ** (inputs are: int,float ->int,float)
+ |
+ string operators ->   +  * 
+
+>>> n = 15
+>>> type(n)
+<class 'int'>
+>>>
+>>> float(n)
+15.0
+>>> str(n)
+'15'
+>>> type(n)
+<class 'int'>
+>>> n
+15
+>>> cost=2432.56
+>>> type(cost)
+<class 'float'>
+>>> int(cost)
+2432
+>>> str(cost)
+'2432.56'
+>>>
+>>> s1='45'
+>>> type(s1)
+<class 'str'>
+>>>
+>>> int(s1)
+45
+>>> int(s1)+100
+145
+>>> int(s1)*9.44
+424.79999999999995
+>>>
+>>> n = 45
+>>> type(n)
+<class 'int'>
+>>>
+>>> n = str(n)
+>>> type(n)
+<class 'str'>
+>>> n
+'45'
+>>>
+>>> input('Enter your name:')
+Enter your name:leo
+'leo'
+>>> input('Enter n value:')
+Enter n value:45
+>>>
+>>> 10 + 20
+30
+>>> 10 + 20.0
+30.0
+>>>
+>>> 10 - 20.0
+-10.0
+>>>
+>>> 3 * 2
+6
+>>> 3 * 2.2
+6.6000000000000005
+>>>
+>>> 10 + 20.34
+30.34
+>>>
+>>> 45 / 5
+9.0
+>>> 45 // 5
+9
+>>> 2 ** 3
+8
+>>> 2 ** 4
+16
+>>> 3 ** 5
+243
+>>> 3 ** 5.3
+337.8645683867659
+>>>
+>>> 2 ^3
+1
+>>> 2 % 3
+2
+>>> 10 + 20
+30
+>>>
+>>>
+>>> "python" + "Program"
+'pythonProgram'
+>>>
+>>> "python"+3
+Traceback (most recent call last):
+  File "<python-input-63>", line 1, in <module>
+    "python"+3
+    ~~~~~~~~^~
+TypeError: can only concatenate str (not "int") to str
+>>>
+>>>
+>>> "python"+str(3)
+'python3'
+>>>
+>>> "python"+str(3.14)
+'python3.14'
+>>>
+>>> dept = 'sales'
+>>> print('working dept is:',dept)
+working dept is: sales
+>>>
+>>> print('working dept is:'+dept)
+working dept is:sales
+>>>
+>>> cost=3999.32
+>>> print("cost is:",cost)
+cost is: 3999.32
+>>> print("cost is:"+cost)
+Traceback (most recent call last):
+  File "<python-input-77>", line 1, in <module>
+    print("cost is:"+cost)
+          ~~~~~~~~~~^~~~~
+TypeError: can only concatenate str (not "float") to str
+>>>
+>>> print("cost is:"+str(cost))
+cost is:3999.32
+>>>
+>>>
+>>> print(10*3)
+30
+>>>
+>>> print("Hello"*3)
+HelloHelloHello
+>>>
+>>> print("Hello\n"*3)
+Hello
+Hello
+Hello
+
+>>> print("Hello\n"*5)
+Hello
+Hello
+Hello
+Hello
+Hello
+
+>>> print("Hello\n"*7)
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+Hello
+
+>>> print("-"*15)
+---------------
+>>>
+
