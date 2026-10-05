@@ -1,0 +1,390 @@
+Relational Operators - Single 
+---------------------
+inputs are: int,float,str ->bool(True / False)
+== != < <= > >=
+
+Vs
+Logical Operators - More than one // In Single Conditionalstatment - test with more than one codition
+---------------------
+inputs are: int,float,str ->bool(True / False)
+and 
+or  
+not 
+--------------------
+membership operators
+---------------------
+in
+not in
+--------
+inputs are: str,bytes,list,tuple,dict,set -> output is: bool
+-----------------------------------------
+
+input_pattern_string  in input_Collection  ->bool
+====================     -----------------
+
+>>> 'sales' in '101,raj,sales,pune'
+True
+>>> 'sales' in '101,raj,prod,pune'
+False
+>>>
+>>> ':' in 'root:x:bin'
+True
+>>> 'sales' in ['raj,sales,pune','leo,prod,bglore','anil,sales,hyd']
+False
+>>>
+>>> 'sales' in ['raj,sales,pune','leo,prod,bglore','anil,sales,hyd','sales']
+True
+>>>
+>>> 'prod' in '101,raj,sales,pune'
+False
+>>>
+>>> 'prod' not in '101,raj,sales,pune'
+True
+>>>
+------------------------------------------------------------------------------------------------
+Conditional statement 
+-----------------------
+->Code block - execute only one time based on the condition
+		       =============
+->if statement 
+  ------------
+
+
+if(condition):
+   ....
+   ....
+
+next line of code
+
+if(condition):
+   True block
+else:
+   False block
+  
+if(condition1):
+   True block1
+elif(condition2):
+   True block2
+elif(condition3):
+   True block3
+..
+else:
+   False block
+------------------//multiconditional statement 
+
+In python, any expression ->bool
+           any method/function ->bool
+----------------------------------------//use conditional statement 
+
+Write a python program:
+|-> read a port number from <STDIN>
+
+|-> test - input port number range is 5001-5999
+           ------------------------------------
+		|-> initialize app name is Flask
+
+	   |->initialize app name is WebApp
+
+|-> Display - App name and Running port number
+-------------------------------------------------------------------------------
+
+Write a python program:
+|-> read a appName from <STDIN>
+|
+|->test - using membership test flask is running -> port = 5000
+				|___ not running -> port = 8080
+
+|->display - app name and running port number
+
+----------------------------------------------------------------------------------
+Write a python program:
+- read an app name from <STDIN>
+- test - flask -> initialize port number is 5000
+- test - fastAPI -> initialize port number is 8080
+- test - prometheus ->initialize port number is: 9090
+|
+-default app name is: web2.0 and port number 8000
+|
+- display app name and running port number
+
+----------------------------------------------------------------------------------
+Recap
+-----
+int float str bool 
+---------------------------
+Conditional statement 
+-----------------------
+->Code block - execute only one time based on the condition
+		       =============
+
+Looping Statements
+------------------
+->Code block - execute more than one time
+		       ==================
+|___ 1.Conditional style loop - while
+|___ 2.Collection style loop  - for 
+===========================================
+|___ 1.Conditional style loop - while
+	|
+	|->Rule1: initialization  i = 0       i = 5
+	|->Rule2: condition       i < 5       i >0
+        |->Rule3: arithmetic      i=i+1       i=i-1
+
+initialization
+while condition:
+	<code block>
+	arithmetic 
+------------------------------------//code block
+
+i = 0
+while(i < 5):
+   print("Test code:",i)
+   i = i+1
+
+break - exit from loop
+continue - ignore current iteration move to the next
+
+if Vs while
+
+
+-----------------------------------------------------------------
+>>> while i < 5:
+...     print(i)
+...     i=i+1
+...
+0
+1
+2
+3
+4
+>>> i
+5
+>>> 5 < 5
+False
+>>> while(False):
+...     print("won't execute")
+-----------------------------------------------------------------
+	
+|___ 2.Collection style loop  - for 
+
+for variable in <collection>:
+	<code block>
+
+for in - keywords
+
+Recap - str
+---------------
+str - Collection of chars
+    - "" <or> ''
+    - index based 
+
+s = "Hello"  --->  | H | e | l | l | 0 |
+		   | 0 | 1 | 2 | 3 | 4 | <== len(s) ->5
+		     -> -> -> -> -> ->
+
+
+s = "Hello"  --->  | H | e | l | l | 0 |
+		   |-5 |-4 |-3 |-2 |-1 | <== index
+			<-- <-- <--
+
+fetch/get single char from given string
+
+ stringName[index] ->Value
+ ---------- =====
+ |             |---->IndexError
+ invalid/not initialization
+ |
+NameError
+			
+print(s[0]) -> 'H'
+Vs
+print(s[-5]) ->'H'
+
+ -> python string  is immutable
+		      ----------
+ 
+ s[0]='X' //Error
+
+
+>>> s='python'
+>>> len(s)
+6
+>>> s[0]
+'p'
+>>> s[1]
+'y'
+>>> s[-1]
+'n'
+>>> s[-2]
+'o'
+>>>
+>>> s="python is a general purpose programming"
+>>> len(s)
+39
+>>> s[0]
+'p'
+>>> s[0:9]# from 0th index 8thindex(9-1)
+'python is'
+>>>
+>>> s[13:20]# from 13th index - 19th index(20-1)
+'eneral '
+>>>
+>>> s[13:] # 13th index to list of all
+'eneral purpose programming'
+>>>
+>>> s[:13] # 1st 13 chars 0-12th
+'python is a g'
+>>>
+>>> s[-1]
+'g'
+>>> s[-5]
+'m'
+>>> s[-5:]
+'mming'
+>>> s[-10:]
+'rogramming'
+>>>
+
+>>> s='python'
+>>> len(s)
+6
+>>> s[0]
+'p'
+>>> s[1]
+'y'
+>>> s[-1]
+'n'
+>>> s[-2]
+'o'
+>>>
+>>> s="python is a general purpose programming"
+>>> len(s)
+39
+>>> s[0]
+'p'
+>>> s[0:9]# from 0th index 8thindex(9-1)
+'python is'
+>>>
+>>> s[13:20]# from 13th index - 19th index(20-1)
+'eneral '
+>>>
+>>> s[13:] # 13th index to list of all
+'eneral purpose programming'
+>>>
+>>> s[:13] # 1st 13 chars 0-12th
+'python is a g'
+>>>
+>>> s[-1]
+'g'
+>>> s[-5]
+'m'
+>>> s[-5:]
+'mming'
+>>> s[-10:]
+'rogramming'
+>>>
+>>> s='python'
+>>>
+>>> for var in s:
+...     print(var)
+...     print('---------')
+...
+p
+---------
+y
+---------
+t
+---------
+h
+---------
+o
+---------
+n
+---------
+>>>
+
+--------------------------------------
+string - methods 
+=================
+
+function Vs method
+|		|
+fx()          obj.fx()
+|            ==========
+|               //object basedCall
+----//directCall 
+
+
+>>> s='python'
+>>>
+>>> s.upper()
+'PYTHON'
+>>>
+>>> 'ABC'.lower()
+'abc'
+>>> s.title()
+'Python'
+>>>
+>>> s='data\n'
+>>>
+>>> s.strip()
+'data'
+>>>
+>>> s.isupper()
+False
+>>>
+>>> # obj.isXYZ() ->bool
+>>> s.islower()
+True
+>>>
+
+>>> print(str.__doc__)
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to 'utf-8'.
+errors defaults to 'strict'.
+>>>
+>>>
+>>>
+>>> help(str.upper)
+Help on method descriptor upper:
+
+upper(self, /) unbound builtins.str method
+    Return a copy of the string converted to uppercase.
+
+>>>
+>>> help(str.replace)
+Help on method descriptor replace:
+
+replace(self, old, new, /, count=-1) unbound builtins.str method
+    Return a copy with all occurrences of substring old replaced by new.
+
+      count
+        Maximum number of occurrences to replace.
+        -1 (the default value) means replace all occurrences.
+
+    If the optional argument count is given, only the first count occurrences are
+    replaced.
+
+>>> s="raj,sales,pune,sales,100,sales,leo,sales"
+>>>
+>>> s.replace("sales","QA")
+'raj,QA,pune,QA,100,QA,leo,QA'
+>>>
+>>> s.replace("sales","QA",count=1)
+'raj,QA,pune,sales,100,sales,leo,sales'
+>>>
+>>> s.replace("sales","QA",count=2)
+'raj,QA,pune,QA,100,sales,leo,sales'
+>>> s.replace("sales","QA",count=3)
+'raj,QA,pune,QA,100,QA,leo,sales'
+>>>
+>>> s.replace("sales","QA")
+'raj,QA,pune,QA,100,QA,leo,QA'
+>>>
