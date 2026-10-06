@@ -1,0 +1,829 @@
+Recap
+-----
+int float str bool 
+--------- === -----
+Operators
+Conditional and looping statements 
+		|->while ; for (break ; continue)
+
+string - index,slicing,methods
+		       --------
+help(str)
+help(str.methodName)
+------------------------------------------------------
+ename = "Mr.ABC"
+eid = 124
+ecost = 324234.32
+elogin_status = True
+
+list - collection of different types of value
+     - index 
+     - slicing 
+     - mutable - we can add/modify/delete 
+     - methods => help(list)
+     - []
+
+type([]) ->  <class 'list'>
+     --
+type('') -> <class 'str'>
+
+list_name = [list of items]
+
+emp_info = ["Mr.ABC",124,324234.32,True] <== 
+		    |   |         |
+		0     1     2        3  <== index
+		-4   -3    -2	    -1  <== index
+
+emp_info[0] -> 'Mr.ABC'
+
+print(type(emp_info)) --><class 'list'>
+print(type(emp_info[0])) -><class 'str'>
+
+emp_info[-2:] # last 2 values
+emp_info[:2]  # first 2 values
+
+
+
+>>> L = ['D1',45,64.2,True]
+>>> len(L)
+4
+>>> type(L)
+<class 'list'>
+>>>
+>>> type(L[0])
+<class 'str'>
+>>>
+>>> type(L[1])
+<class 'int'>
+>>>
+>>> for var in L:
+...     print(var)
+...
+D1
+45
+64.2
+True
+>>> s = "Hello" # string is a collection of chars
+>>> for var in s:
+...     print(var)
+...
+H
+e
+l
+l
+o
+>>> for var in ["Hello"]:
+...     print(var)
+...
+Hello
+>>> len(["Hello"])
+1
+>>> len("Hello")
+5
+>>>
+>>> s="Hello"
+>>>
+>>> s[0]
+'H'
+>>> s[-1]
+'o'
+>>>
+>>> s[-1] = "X"
+Traceback (most recent call last):
+  File "<python-input-31>", line 1, in <module>
+    s[-1] = "X"
+    ~^^^^
+TypeError: 'str' object does not support item assignment
+>>>
+>>> L=['D1','D2',3355,4.5,True]
+>>>
+>>> len(L)
+5
+>>> L[0]
+'D1'
+>>> L[0] = 'Data-1' # modification
+>>> L
+['Data-1', 'D2', 3355, 4.5, True]
+>>>
+>>> L[-1] = 0.45 # modification
+>>>
+>>> L
+['Data-1', 'D2', 3355, 4.5, 0.45]
+>>>
+>>>
+>>> L[8] = 'Data-2'
+Traceback (most recent call last):
+  File "<python-input-45>", line 1, in <module>
+    L[8] = 'Data-2'
+    ~^^^
+IndexError: list assignment index out of range
+>>>
+>>> # To add new data to an existing list
+>>> # ------------------------------------
+>>> # ListName.append(Value) -> None
+>>>
+>>> L = ['D1','D2','D3']
+>>>
+>>> len(L)
+3
+>>>
+>>> L
+['D1', 'D2', 'D3']
+>>>
+>>> L.append('D4')
+>>>
+>>> L.append(45.32)
+>>>
+>>> L.append(True)
+>>>
+>>> L
+['D1', 'D2', 'D3', 'D4', 45.32, True]
+>>>
+>>> len(L)
+6
+>>> # Listname.insert(index,Value) ->None
+>>>
+>>> L.insert(1,"emp.csv")
+>>>
+>>> L
+['D1', 'emp.csv', 'D2', 'D3', 'D4', 45.32, True]
+>>> len(L)
+7
+>>> L.insert(8,"/var/log") # like append operation
+>>> L
+['D1', 'emp.csv', 'D2', 'D3', 'D4', 45.32, True, '/var/log']
+>>> L[7]
+'/var/log'
+>>>
+>>> i  = 45
+>>> i
+45
+>>> del(i)
+>>>
+>>> i
+Traceback (most recent call last):
+  File "<python-input-82>", line 1, in <module>
+    i
+NameError: name 'i' is not defined. Did you mean: 'id'?
+>>>
+>>> L=['D1','D2','D3','D4']
+>>>
+>>> del(L[1])
+>>>
+>>> L
+['D1', 'D3', 'D4']
+>>>
+>>> # Listname.pop(index) -> removed_value
+>>>
+>>> L=[10,20,30,40,4.52,True,'D1','D2']
+>>> len(L)
+8
+>>> L.pop(2)
+30
+>>> L
+[10, 20, 40, 4.52, True, 'D1', 'D2']
+>>>
+>>> L.pop()
+'D2'
+>>> L
+[10, 20, 40, 4.52, True, 'D1']
+>>> L.pop()
+'D1'
+>>> L
+[10, 20, 40, 4.52, True]
+>>>
+----------------------------------------------------------------------------------------------------
+>>> s='101,ram,sales,pune,1000'
+>>>
+>>> len(s)
+23
+>>> # str ->list
+>>> # ---
+>>> #  |___split(sep) ->list
+>>>
+>>> s.split(",")
+['101', 'ram', 'sales', 'pune', '1000']
+>>>
+>>> s='101,ram,sales:pune:1000'
+>>>
+>>> s.split(":")
+['101,ram,sales', 'pune', '1000']
+>>>
+>>> s.split(",")
+['101', 'ram', 'sales:pune:1000']
+>>>
+>>> s.split("-")
+['101,ram,sales:pune:1000']
+>>>
+>>> L=['emp.csv',35,'root','1KB']
+>>>
+>>> L=['emp.csv','35','root','1KB']
+>>>
+>>>
+>>> ''.join(L)
+'emp.csv35root1KB'
+>>>
+>>> ','.join(L)
+'emp.csv,35,root,1KB'
+>>>
+>>>
+>>> ':'.join(L)
+'emp.csv:35:root:1KB'
+>>>
+------------------------------------------------------------------------
+multiple initialization
+----------------------------
+
+variable = value
+
+Vs
+
+variable1,variable2,variable3 = value1,value2,value3
+
+ename,eid,edept = 'Abc',145,'sales'
+|______|____|_________|   |      |
+       |____|_____________|      |
+	    |____________________|
+
+
+
+>>>
+>>> s='101,ram,sales,pune,1000'
+>>>
+>>> len(s)
+23
+>>> # str ->list
+>>> # ---
+>>> #  |___split(sep) ->list
+>>>
+>>> s.split(",")
+['101', 'ram', 'sales', 'pune', '1000']
+>>>
+>>> s='101,ram,sales:pune:1000'
+>>>
+>>> v1,v2,v3 = 10,20,4.3
+>>>
+>>> v1,v2,v3 = 10,20,4.3,44
+Traceback (most recent call last):
+  File "<python-input-133>", line 1, in <module>
+    v1,v2,v3 = 10,20,4.3,44
+    ^^^^^^^^
+ValueError: too many values to unpack (expected 3, got 4)
+>>>
+>>> v1,v2 = 10,20,30
+Traceback (most recent call last):
+  File "<python-input-135>", line 1, in <module>
+    v1,v2 = 10,20,30
+    ^^^^^
+ValueError: too many values to unpack (expected 2, got 3)
+>>>
+>>> file_info = ['emp.csv',25,'root','5KB','/var/log']
+>>>
+>>> fname = file_info[0]
+>>> findex = file_info[1]
+>>> fuser = file_info[2]
+>>> fsize = file_info[3]
+>>> fpath = file_info[-1]
+>>>
+>>> ## Vs
+>>>
+>>> f1,f2,f3,f4,f5 = file_info ## multiple initialization
+>>>
+>>> f1
+'emp.csv'
+>>> f2
+25
+>>> f3
+'root'
+>>> f4
+'5KB'
+>>> f5
+'/var/log'
+>>>
+>>> s='101,raj,sales,pune,1000'
+>>>
+>>> s.split(',')
+['101', 'raj', 'sales', 'pune', '1000']
+>>>
+>>> eid,ename,edept,eplace,ecost = s.split(',')
+>>>
+>>> eid
+'101'
+>>> ename
+'raj'
+>>> edept
+'sales'
+>>> eplace
+'pune'
+>>> ecost
+'1000'
+>>>
+############################################################################################
+
+>>> L=[]
+>>> L.append('D1')
+>>> L.append('D2')
+>>> L.append('D1')
+>>> L.append('D1')
+>>> L.append('D1')
+>>> L.append('D2')
+>>> L.append('D3')
+>>> L.append('D4')
+>>>
+>>> L
+['D1', 'D2', 'D1', 'D1', 'D1', 'D2', 'D3', 'D4']
+>>>
+>>> L.insert(2,45)
+>>> L
+['D1', 'D2', 45, 'D1', 'D1', 'D1', 'D2', 'D3', 'D4']
+>>>
+>>> s='hello'
+>>> s.count('l')
+2
+>>> s.count('o')
+1
+>>> s.count('x')
+0
+>>>
+>>> L.count('D1')
+4
+>>> L.count('D2')
+2
+>>> L.count('D5')
+0
+>>> s.index('e')
+1
+>>> s.index('l')
+2
+>>> s.index('a')
+Traceback (most recent call last):
+  File "<python-input-192>", line 1, in <module>
+    s.index('a')
+    ~~~~~~~^^^^^
+ValueError: substring not found
+>>>
+>>> L.index('D1')
+0
+>>> L.index('D2')
+1
+>>> L.index('D4')
+8
+>>> L[8]
+'D4'
+>>>
+############################################################################################
+
+list - Collection of different types  
+     - index based access
+     - support slicing
+     - we can use membership operator 
+     - mutable <===
+     - []
+
+Vs
+tuple - Collection of different types  
+      - index based access
+      - support slicing
+      - we can use membership operator 
+      - immutable <===
+      - ()
+
+
+>>> L=[]
+>>> L.append('D1')
+>>> L.append('D2')
+>>> L.append('D1')
+>>> L.append('D1')
+>>> L.append('D1')
+>>> L.append('D2')
+>>> L.append('D3')
+>>> L.append('D4')
+>>>
+>>> L
+['D1', 'D2', 'D1', 'D1', 'D1', 'D2', 'D3', 'D4']
+>>>
+>>> L.insert(2,45)
+>>> L
+['D1', 'D2', 45, 'D1', 'D1', 'D1', 'D2', 'D3', 'D4']
+>>>
+>>> s='hello'
+>>> s.count('l')
+2
+>>> s.count('o')
+1
+>>> s.count('x')
+0
+>>>
+>>> L.count('D1')
+>>>
+>>> L = [10,2.55,'data',True]
+>>>
+>>> type(L)
+<class 'list'>
+>>>
+>>> T = (10,2.55,'data',True)
+>>>
+>>> type(T)
+<class 'tuple'>
+>>> len(T)
+4
+>>> print(T)
+(10, 2.55, 'data', True)
+>>>
+>>> 'data' in T
+True
+>>> for var in T:
+...     print(var)
+...
+10
+2.55
+data
+True
+>>> T[-3:]
+(2.55, 'data', True)
+>>>
+>>>
+>>> L
+[10, 2.55, 'data', True]
+>>>
+>>> L[1] = 'Data-2'
+>>> L
+[10, 'Data-2', 'data', True]
+>>>
+>>> T
+(10, 2.55, 'data', True)
+>>>
+>>> T[1] = 'Data'
+Traceback (most recent call last):
+  File "<python-input-221>", line 1, in <module>
+    T[1] = 'Data'
+    ~^^^
+TypeError: 'tuple' object does not support item assignment
+>>> T
+(10, 2.55, 'data', True)
+>>>
+>>>
+>>>
+>>> Config_files = ("/etc/f1","/etc/f2","/etc/f3")
+>>>
+>>> # Modify ->/etc/f2 -> C:\\program\\f2.cfg
+>>> # -----              ======================
+>>> # add new config file
+>>> # delete 0th index file
+>>> #-------------------
+>>>
+>>>
+>>> # module.fx() -> ("/etc/f1","/etc/f2","/etc/f3")
+>>>
+>>>
+>>> list(Config_files)
+['/etc/f1', '/etc/f2', '/etc/f3']
+>>>
+>>> tv = list(Config_files)
+>>>
+>>> tv.pop(0)
+'/etc/f1'
+>>> tv
+['/etc/f2', '/etc/f3']
+>>> tv[0] = "C:\\program\\f2.cfg"
+>>> tv.append("C:\\f2.conf")
+>>> tv
+['C:\\program\\f2.cfg', '/etc/f3', 'C:\\f2.conf']
+>>>
+>>> tuple(tv)
+('C:\\program\\f2.cfg', '/etc/f3', 'C:\\f2.conf')
+>>>
+>>> Config_file = tuple(tv)
+>>> Config_file
+('C:\\program\\f2.cfg', '/etc/f3', 'C:\\f2.conf')
+>>>
+----------------------------------------------------------------------------------------------------
+L=['D1','D2','D3'] # 1D
+T=('D1','D2','D3') # 1D
+
+
+List of List    -->   [ [],[],[],[],[],[] ]
+
+List of tuple   -->   [ (),(),(),(),(),() ]
+-----  =======
+Tuple of List   --->  ( [],[],[] )
+
+Tuple of tuple  --->  ( (),(),() )
+------ ======== 
+>>> L1 = ['win10','win11','win2k']
+>>>
+>>> L2 = ['RHL5','RHL6']
+>>>
+>>> L = [ L1,L2 ]
+>>>
+>>> L
+[['win10', 'win11', 'win2k'], ['RHL5', 'RHL6']]
+>>>
+>>> len(L)
+2
+>>> L[0]
+['win10', 'win11', 'win2k']
+>>>
+>>> L[1]
+['RHL5', 'RHL6']
+>>>
+>>> L[0][0]
+'win10'
+>>> L[0][1]
+'win11'
+>>> L[0][2]
+'win2k'
+>>> L[0][1] = "Win12" # we can modify
+>>> L
+[['win10', 'Win12', 'win2k'], ['RHL5', 'RHL6']]
+>>>
+>>> # L.append("RHL7")
+>>> L[1].append("RHL7")
+>>> L
+[['win10', 'Win12', 'win2k'], ['RHL5', 'RHL6', 'RHL7']]
+>>>
+>>> L.append(["OL5","OL6","OL7","OL8"])
+>>>
+>>> L
+[['win10', 'Win12', 'win2k'], ['RHL5', 'RHL6', 'RHL7'], ['OL5', 'OL6', 'OL7', 'OL8']]
+>>>
+>>>
+>>> L = [("Winx10","winx11"),("RHL5","RHL6","RHL7"),("OL5","OL6")] # list of tuple
+>>>
+>>> type(L)
+<class 'list'>
+>>> type(L[0])
+<class 'tuple'>
+>>>
+>>> type(L[1])
+<class 'tuple'>
+>>>
+>>> L.append(("DEB11","DEB12")) # adding tuple
+>>> L
+[('Winx10', 'winx11'), ('RHL5', 'RHL6', 'RHL7'), ('OL5', 'OL6'), ('DEB11', 'DEB12')]
+>>>
+>>>
+>>>
+>>> # list.extend(iterable)
+>>>
+>>>
+>>> costs = [100,200,300,400,500]
+>>>
+>>> costs.extend([4,5,6])
+>>>
+>>> costs
+[100, 200, 300, 400, 500, 4, 5, 6]
+>>>
+>>> ####### Vs
+>>>
+>>> costs = [100,200,300,400,500]
+>>> costs.append([4,5,6])
+>>>
+>>> costs
+[100, 200, 300, 400, 500, [4, 5, 6]]
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> L = ['D1','D2',['D3','D4','D5'],('D6','D7'),[[['D8','D9']]],'D10']
+>>>
+>>> print(L)
+['D1', 'D2', ['D3', 'D4', 'D5'], ('D6', 'D7'), [[['D8', 'D9']]], 'D10']
+>>>
+>>> len(L)
+6
+>>> L[2]
+['D3', 'D4', 'D5']
+>>>
+>>> L[2][0]
+'D3'
+>>> L[2][1]
+'D4'
+>>> L[3]
+('D6', 'D7')
+>>>
+>>> L[3][0]
+'D6'
+>>> L[3][1]
+'D7'
+>>> L[4]
+[[['D8', 'D9']]]
+>>>
+>>> L[4][0]
+[['D8', 'D9']]
+>>> L[4][0][0]
+['D8', 'D9']
+>>> L[4][0][0][0]
+'D8'
+>>> L[4][0][0][1]
+'D9'
+>>>
+
+>>> # Tuple of List
+>>> # ------ =======
+>>>
+>>> T=([],[])
+>>>
+>>> len(T)
+2
+>>> type(T)
+<class 'tuple'>
+>>>
+>>> type(T[0])
+<class 'list'>
+>>>
+>>> T[0].append('D1')
+>>> T[0].append('D2')
+>>> T[0].append('D3')
+>>> T[0].append(10)
+>>> T[0].append(11
+... )
+>>> T[0].append(12)
+>>>
+>>> len(T)
+2
+>>> len(T[0])
+6
+>>> T
+(['D1', 'D2', 'D3', 10, 11, 12], [])
+>>>
+>>> T[0]
+['D1', 'D2', 'D3', 10, 11, 12]
+>>>
+>>> T[0][2]
+'D3'
+>>> T[0][2] = 'Data-3'
+>>> T
+(['D1', 'D2', 'Data-3', 10, 11, 12], [])
+>>>
+>>> ## Tuple of Tuple
+>>> # ------------------
+>>>
+>>> T=(("D1","D2"),("D3","D4"))
+>>>
+>>>
+>>> T[0]
+('D1', 'D2')
+>>> T[0][0]
+'D1'
+>>>
+>>> v = T[0][0]
+>>> v
+'D1'
+>>>
+
+>>> v=10
+>>> type(v)
+<class 'int'>
+>>>
+>>> type(())
+<class 'tuple'>
+>>>
+>>> v=(10)
+>>> type(v)
+<class 'int'>
+>>>
+>>> v=(10,)
+>>> type(v)
+<class 'tuple'>
+>>>
+>>> 10
+10
+>>> 10,20
+(10, 20)
+>>>
+--------------------------------------------------------------------------------------------------
+
+str - collection of chars - index based - immuable '' <or> ""
+|
+list - collection of values - index based - mutable  [] <===
+tuple - collection of values - index based - immutable  ()
+|
+dict - collection of values - key:value//data - mutable {} <===
+----
+dict keys are immutable types
+dict key must be unique 
+dict value can be any python value
+dict value can duplicate 
+key:value
+   =
+
+d={"eid":123,"ename":"Mr.Abc","edept":"sales"}
+    --------|----------------|---------------
+
+len(d) -> 3
+	--------------
+	eid  | 123
+	-----|-----
+	ename| Mr.Abc
+	-----|-------
+	edept| sales
+	--------------
+
+1. DataFrame - Table
+2. Webprogramming - webheader info
+3. JSON Object - python dict
+4. html form process -> dict
+5. webscraping nestages -> dict
+6. env  -> dict
+7. system configuration/deviceconfig ->dict
+ 
+using membership operator - we can determine the key is existing or not
+
+"ename" in d ->True
+
+"ENAME" in d ->False 
+
+###########################################################################################################
+
+
+
+>>> emp = {"name":"Raj","age":34,"dept":"sales"}
+>>>
+>>> print(emp)
+{'name': 'Raj', 'age': 34, 'dept': 'sales'}
+>>>
+>>> len(emp)
+3
+>>> type(emp)
+<class 'dict'>
+>>>
+>>> # How to fetch/get single data ?
+>>> #
+>>> # dictName[oldKey] ->Value/KeyError
+>>>
+>>> emp['name']
+'Raj'
+>>> emp['age']
+34
+>>> emp['dept']
+'sales'
+>>>
+>>> emp['Dept']
+Traceback (most recent call last):
+  File "<python-input-402>", line 1, in <module>
+    emp['Dept']
+    ~~~^^^^^^^^
+KeyError: 'Dept'
+>>>
+>>> # How to add new data to an existing dict
+>>> #     ------------------------------
+>>> #     dictname['newKey'] = Value
+>>> #
+>>>
+>>> emp
+{'name': 'Raj', 'age': 34, 'dept': 'sales'}
+>>>
+>>> emp['city']='Bglore'
+>>>
+>>> emp
+{'name': 'Raj', 'age': 34, 'dept': 'sales', 'city': 'Bglore'}
+>>>
+>>> # dictname['newKey'] = Value <-- Adding new data
+>>> #  Vs
+>>> # dictname['oldKey'] = Value <-- Modification
+>>>
+>>> emp['city']='Hyderabad' # modification
+>>> emp
+{'name': 'Raj', 'age': 34, 'dept': 'sales', 'city': 'Hyderabad'}
+>>>
+>>>
+>>> # dictname.pop(OldKey) ->removedValue
+>>> # ------------------------------------
+>>>
+>>>
+>>> emp.pop('dept')
+'sales'
+>>> emp
+{'name': 'Raj', 'age': 34, 'city': 'Hyderabad'}
+>>>
+>>>
+>>> for var in emp:
+...     print(var)
+...
+name
+age
+city
+>>>
+>>>
+>>> emp['name']
+'Raj'
+>>>
+>>> for var in emp:
+...     print(emp[var])
+...
+Raj
+34
+Hyderabad
+>>>
+>>> for var in emp:
+...     print(f"{var}\t{emp[var]}")
+...
+name    Raj
+age     34
+city    Hyderabad
+>>>
+----------------------------------------------------------------------------------------------
+
