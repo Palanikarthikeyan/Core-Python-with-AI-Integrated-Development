@@ -1,0 +1,439 @@
+------------------------------------------------------------------------------------------------
+d.setdefault('newkey',value)
+
+d.x`
+d.pop('oldKey')
+
+d.keys()
+d.values()
+d.items()
+-----------------------------------------
+
+
+>>> d['K1'] = 'V1'
+>>> d
+{'K1': 'V1'}
+>>>
+>>> # dictName.setdefault('newKey',Value)
+>>> # -------- ==========
+>>>
+>>> d.setdefault('K2','V2')
+'V2'
+>>> d
+{'K1': 'V1', 'K2': 'V2'}
+>>>
+>>> # To fetch the data from dict
+>>> # dictName['key'] ->value/KeyError
+>>>
+>>> d['K1']
+'V1'
+>>> d['k1']
+Traceback (most recent call last):
+  File "<python-input-485>", line 1, in <module>
+    d['k1']
+    ~^^^^^^
+KeyError: 'k1'
+>>>
+>>> # dictname.get('Key') ->Value/None
+>>> d.get('K1')
+'V1'
+>>> d.get('k1')
+>>>
+>>> d.get('k1') == None
+True
+>>>
+>>> for var in d:
+...     print(var)
+...
+K1
+K2
+>>> d.keys()
+dict_keys(['K1', 'K2'])
+>>>
+>>> d.values()
+dict_values(['V1', 'V2'])
+>>>
+>>> d.items()
+dict_items([('K1', 'V1'), ('K2', 'V2')])
+>>>
+>>>
+
+=================================================================================
+emp={'eid':123,'ename':'Mr.Ab','edept':'sales'} # 1D 
+           ===         =======          ======
+Vs
+
+emp={'eid':[123,456,312],'ename':['Mr.Ab','Ms.Bc','Ms.Ga'],'edept':['sales','prod','HR']} # dict of list - MD
+	|    0   1   2
+	Key
+
+emp['eid'][0] ->123
+
+emp['eid'][1] ->456
+
+emp['ename'][0] ->Mr.Ab
+   ---------===
+emp['edept'][0] ->sales
+
+emp['edept'][0] = "admin" # OK - we can modify an existing value from list(mutable)
+   ------------------------
+
+Vs
+emp={'eid':(123,456,312),'ename':('Mr.Ab','Ms.Bc','Ms.Ga'),'edept':('sales','prod','HR')} # dict of tuple
+
+print(emp['eid'][0])
+
+emp['edept'][0] = 'admin' # Error 
+-----------------=======
+      
+Vs
+
+emp={'eid':{},'ename':{},'edept':{}} # dict of dict 
+            
+
+
+
+>>> d={}
+>>>
+>>> # To add new data to an existing dict
+>>> #    -----------------------------
+>>> #
+>>> # dictName['newKey'] = value
+>>>
+>>> d['K1'] = 'V1'
+>>> d
+{'K1': 'V1'}
+>>>
+>>> # dictName.setdefault('newKey',Value)
+>>> # -------- ==========
+>>>
+>>> d.setdefault('K2','V2')
+'V2'
+>>> d
+{'K1': 'V1', 'K2': 'V2'}
+>>>
+>>> # To fetch the data from dict
+>>> # dictName['key'] ->value/KeyError
+>>>
+>>> d['K1']
+'V1'
+>>> d['k1']
+Traceback (most recent call last):
+  File "<python-input-485>", line 1, in <module>
+    d['k1']
+    ~^^^^^^
+>>>
+>>> d={'db':'oracle','db':'mysql','db':'sqlite3','config':'oracle.db','config':'mysql.co\nf','config':'sqlite3.db'}
+>>>
+>>> d
+{'db': 'sqlite3', 'config': 'sqlite3.db'}
+>>>
+>>> d={'db':['oracle','mysql','sqlite3'],'config':('oracle.conf','mysql.conf','sqlite3.d\b')}
+>>>
+>>> d
+{'db': ['oracle', 'mysql', 'sqlite3'], 'config': ('oracle.conf', 'mysql.conf', 'sqlite3.db')}
+>>>
+>>> d['db'][0]
+'oracle'
+>>> d['config'][0]
+'oracle.conf'
+>>>
+>>> d={'db1':{'db':'oracle','config':'oracle.cfg'},'db2':{'db':'mysql','config':'mysql.c\onf'}}
+>>> d
+{'db1': {'db': 'oracle', 'config': 'oracle.cfg'}, 'db2': {'db': 'mysql', 'config': 'mysql.conf'}}
+>>>
+>>>
+
+============================================================================================
+Dumper view 
+ <or>
+Pretty print view
+-------------------
+set 
+----
+->Collection of unordered items
+->Not index based
+->Key:value based
+|
+->unique data
+
+set_name = {List of items}
+	    ------------- 
+
+s = {10,20,'K1','V1','K1',10,20,30,40,10}
+    ------------------------------------
+
+
+>>> s = {10,20,'K1','V1','K1',10,20,30,40,10}
+...
+>>>
+>>> type(s)
+<class 'set'>
+>>>
+>>> len(s)
+6
+>>> s
+{20, 'K1', 'V1', 40, 10, 30}
+>>>
+>>> file_contents=['data1','data2','data1','data1','data2','data1','data1']
+>>>
+>>> len(file_contents)
+7
+>>>
+>>> set(file_contents)
+{'data2', 'data1'}
+>>>
+>>> list(set(file_contents))
+['data2', 'data1']
+>>>
+>>>
+>>> s={None,10,20}
+>>> s
+{None, 10, 20}
+>>>
+>>> s={[]}
+Traceback (most recent call last):
+  File "<python-input-535>", line 1, in <module>
+    s={[]}
+      ^^^^
+TypeError: cannot use 'list' as a set element (unhashable type: 'list')
+>>>
+>>> s={{'K1':'V'}}
+Traceback (most recent call last):
+  File "<python-input-537>", line 1, in <module>
+    s={{'K1':'V'}}
+      ^^^^^^^^^^^^
+TypeError: cannot use 'dict' as a set element (unhashable type: 'dict')
+>>>
+>>> s={10,20,30}
+>>>
+>>> s.add(30)
+>>> s.add(40)
+>>>
+>>> s.add('data1')
+>>> s
+{'data1', 40, 10, 20, 30}
+>>>
+>>> s.update(['D1','D2'])
+>>> s.update(('D1',10,45))
+>>> s
+{'D1', 'data1', 40, 10, 45, 'D2', 20, 30}
+>>>
+>>> s.remove(40)
+>>> s
+{'D1', 'data1', 10, 45, 'D2', 20, 30}
+>>> s.discard(10)
+>>>
+>>> s
+{'D1', 'data1', 45, 'D2', 20, 30}
+>>>
+>>> s.discard(10)
+>>>
+>>> s
+{'D1', 'data1', 45, 'D2', 20, 30}
+>>>
+>>>
+>>> s.remove(40)
+Traceback (most recent call last):
+  File "<python-input-562>", line 1, in <module>
+    s.remove(40)
+    ~~~~~~~~^^^^
+KeyError: 40
+>>>
+>>> s.pop(45)
+Traceback (most recent call last):
+  File "<python-input-564>", line 1, in <module>
+    s.pop(45)
+    ~~~~~^^^^
+TypeError: set.pop() takes no arguments (1 given)
+>>>
+>>> s.pop()
+'D1'
+>>> s
+{'data1', 45, 'D2', 20, 30}
+>>>
+
+-------------
+set operations
+
+union
+intersection
+difference
+symmetric_difference
+------------------------
+ |->1. set operators   union  |        difference - 
+                       intersection &  symmetric_difference ^
+ |   <or>
+ |->2. set methods
+
+
+>>> s = {10,20,'K1','V1','K1',10,20,30,40,10}
+...
+>>>
+>>> type(s)
+<class 'set'>
+>>>
+>>> len(s)
+6
+>>> s
+{20, 'K1', 'V1', 40, 10, 30}
+>>>
+>>> file_contents=['data1','data2','data1','data1','data2','data1','data1']
+>>>
+>>> len(file_contents)
+7
+>>>
+>>> set(file_contents)
+{'data2', 'data1'}
+>>>
+>>> list(set(file_contents))
+['data2', 'data1']
+>>>
+>>>
+>>> s={None,10,20}
+>>> s
+{None, 10, 20}
+>>>
+>>> s={[]}
+Traceback (most recent call last):
+  File "<python-input-535>", line 1, in <module>
+    s={[]}
+      ^^^^
+TypeError: cannot use 'list' as a set element (unhashable type: 'list')
+>>>
+>>> s={{'K1':'V'}}
+Traceback (most recent call last):
+  File "<python-input-537>", line 1, in <module>
+    s={{'K1':'V'}}
+      ^^^^^^^^^^^^
+TypeError: cannot use 'dict' as a set element (unhashable type: 'dict')
+>>>
+>>> s={10,20,30}
+>>>
+>>> s.add(30)
+>>> s.add(40)
+>>>
+>>> s.add('data1')
+>>> s
+{'data1', 40, 10, 20, 30}
+>>>
+>>> s.update(['D1','D2'])
+>>> s.update(('D1',10,45))
+>>> s
+{'D1', 'data1', 40, 10, 45, 'D2', 20, 30}
+>>>
+>>> s.remove(40)
+>>> s
+{'D1', 'data1', 10, 45, 'D2', 20, 30}
+>>> s.discard(10)
+>>>
+>>> s
+{'D1', 'data1', 45, 'D2', 20, 30}
+>>>
+>>> s.discard(10)
+>>>
+>>> f1=['data1','data2','data3','data4']
+>>>
+>>> f2=['data5','data2','data6','data4']
+>>>
+>>> set(f1) | set(f2) # union
+{'data1', 'data5', 'data4', 'data3', 'data2', 'data6'}
+>>>
+>>> set(f1).union(set(f2)) # union
+{'data1', 'data5', 'data4', 'data3', 'data2', 'data6'}
+>>>
+>>>
+>>> set(f1).intersection(set(f2)) # intersection
+{'data2', 'data4'}
+>>>
+>>> set(f1) & set(f2) # intersection
+{'data2', 'data4'}
+>>>
+>>>
+>>> set(f1) - set(f2)
+{'data3', 'data1'}
+>>>
+>>>
+>>> set(f1) ^ set(f2)
+{'data1', 'data5', 'data3', 'data6'}
+===============================================================================================
+>>> # range() - generate sequence of numbers
+>>> # -------
+>>> # python 3.x - range is a type
+>>>
+>>> range(5)
+range(0, 5)
+>>>
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+>>>
+>>> # range(N)
+>>> #       |___[0,1,2... N-1]
+>>> #            ============
+>>>
+>>> # range(N,M)
+>>> #       | |
+>>> #       |____[N,...M-1]
+>>>
+>>> list(range(3,9))
+[3, 4, 5, 6, 7, 8]
+>>>
+>>>
+>>> # range(N,M,Step)
+>>> #
+>>>
+>>> list(range(3,15,2))
+[3, 5, 7, 9, 11, 13]
+>>>
+>>>
+>>> list(range(3,15,-2))
+[]
+>>>
+>>> list(range(15,3,-2))
+[15, 13, 11, 9, 7, 5]
+>>>
+>>>
+-------------------------------------
+>>> range(5)
+range(0, 5)
+>>>
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+>>>
+>>> # range(N)
+>>>
+>>> i = 0
+>>> while(i < 5):
+...     print('i value:',i)
+...     i=i+1
+...
+i value: 0
+i value: 1
+i value: 2
+i value: 3
+i value: 4
+>>>
+>>> for i in range(5):
+...     print('i value:',i)
+...
+i value: 0
+i value: 1
+i value: 2
+i value: 3
+i value: 4
+>>> # Process 10 customer records 1 to 10
+>>> for customer_id in range(1,11):
+...     print("processing customer:",customer_id)
+...
+processing customer: 1
+processing customer: 2
+processing customer: 3
+processing customer: 4
+processing customer: 5
+processing customer: 6
+processing customer: 7
+processing customer: 8
+processing customer: 9
+processing customer: 10
+>>>	
+---------------------------------------------------
