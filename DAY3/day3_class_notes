@@ -1,0 +1,911 @@
+
+L=[(101,'ram','sales',1000),(102,'leo','sales',2000),(103,'bibu','prod',3000)]
+>>> L.insert(1,tuple(tv))
+>>> L
+[(101, 'ram', 'sales', 1000), ('C:\\win32', '/etc/f2'), (102, 'leo', 'sales', 2000), (103, 'bibu', 'prod', 3000)]
+>>>
+>>>
+>>> L[1]=(102,'leo','sales',5000) # modification
+>>>
+>>>
+>>> L=[(101,'ram','sales',1000),(102,'leo','sales',2000),(103,'bibu','prod',3000)]
+...
+>>>
+>>> L[1]
+(102, 'leo', 'sales', 2000)
+>>>
+>>> rv = L.pop(1)
+>>> rv
+(102, 'leo', 'sales', 2000)
+>>> tv = list(rv)
+>>> tv[-1] = 5000
+>>> tv
+[102, 'leo', 'sales', 5000]
+>>> L.insert(1,tuple(tv))
+>>> L
+[(101, 'ram', 'sales', 1000), (102, 'leo', 'sales', 5000), (103, 'bibu', 'prod', 3000)]
+>>>
+>>>
+>>> L
+[(101, 'ram', 'sales', 1000), (102, 'leo', 'sales', 5000), (103, 'bibu', 'prod', 3000)]
+>>>
+>>>
+>>> L.append((104,'theeb','HR',4000))
+>>> L
+[(101, 'ram', 'sales', 1000), (102, 'leo', 'sales', 5000), (103, 'bibu', 'prod', 3000), (104, 'theeb', 'HR', 4000)]
+>>>
+>>>
+-----------------------------------------------------------------------------
+
+>>> L=['oracle23ai','oracle26ai','oracledb','oracle_cx','mysql']
+>>>
+>>> L.index('oracle26ai')
+1
+>>>
+>>> index_number = L.index('oracle26ai')
+>>>
+>>> L[index_number] = 'oracle28AI'
+>>>
+>>> L
+['oracle23ai', 'oracle28AI', 'oracledb', 'oracle_cx', 'mysql']
+>>>
+>>> type(True)
+<class 'bool'>
+>>>
+>>> type(False)
+<class 'bool'>
+>>>
+>>> n=45
+>>> float(n)
+45.0
+>>> str(n)
+'45'
+>>> bool(n)
+True
+>>> n=0
+>>> bool(n)
+False
+>>> print(bool(0),bool(0.0),bool(''),bool(None),bool([]),bool(()),bool({}))
+False False False False False False False
+>>>
+>>> if(0):
+...     print("Yes")
+... else:
+...     print("Empty")
+...
+Empty
+>>> if(-33242432423423423423):
+...     print("Yes")
+... else:
+...     print("False block")
+...
+Yes
+>>> name = input("Enter your name:")
+Enter your name:
+>>> name
+''
+>>> len(name) == 0
+True
+>>> if(len(name) == 0):
+...     print("Empty string")
+... else:
+...     print(f"Hello...{name}")
+...
+Empty string
+>>>
+>>> name = input("Enter your name:")
+Enter your name:
+>>> if(name):
+...     print(f"Hello...{name}")
+... else:
+...     print("Empty string")
+...
+Empty string
+>>>
+>>> name = input("Enter your name:")
+Enter your name:Karthik
+>>>
+>>> if(name):
+...     print(f"Hello...{name}")
+... else:
+...     print("Empty string")
+...
+Hello...Karthik
+>>>
+>>> print(bool(''),bool('asdfsdfsd'))
+False True
+>>>
+-----------------------------------------------------------------------------
+
+Recap
+------
+ variable = value <-- initialization
+	<or>
+
+ variable = input('') <-- execution input - <STDIN> - keyboard
+
+
+Keyboard(<STDIN>)----<---input()-------| Python | -----print()--->----- Monitor(STDOUT)
+				       |________|
+					   |
+					   |read/write
+					   |
+					Storage(File)
+
+
++---------------------------------+
+| User: python ...     --------<-----------
++----------|(1)-----------------------+    |
+|          |                               |
+|       systemcall()                       |
+|          |__FileSystem(2)                |
+|                |              | d1..dn|0x1234 (4)
+|              Device Driver
+|                |
+|              Device Controller
+| OS:
++---------------------------------+
+| H/W:    HardDisk (3)
++-------------------------------------+
+fobj = open('F:\\demo\\r1.log','r')
+----  
+
+open('F:\\demo\\r1.log') // default mode is read mode
+---------------------------
+
+open('/var/log/repo/r1.log','r')
+      ---------------------
+C:\users\karthik> dir
+
+Empty directory
+
+C:\users\karthik> python
+
+>>> open('r1.log','r') ->FileNotFoundError 
+	  ------
+	Vs
+>>> open('F:\\demo\\r1.log','r') ->OK
+
+Keyboard(<STDIN>)----<---input()-------| Python | -----print()--->----- Monitor(STDOUT)
+				       |________|
+					   |
+					   |read/write
+					   |
+					Storage(File)
+
+1. Read - data from <FILE> -->python -- Display to Monitor # not using keyboard input
+
+2. Read data from Keyboard -->Python -- Create a new file and write data to FILE
+					# not using monitor 
+
+3. Read - data from <FILE-1> -->python -- Create a newfile and write data to FILE
+					# not using IO devices
+
+
+1. Read - data from <FILE> -->python -- Display to Monitor # not using keyboard input
+
+read   'r'
+write  'w'
+append 'a'
+|
+open an existing file ----> open('filename',mode) ->fobj =>  fobj = open('filename','r')
+read the contents	    fobj.read() ->str <or> fobj.readlines() ->list
+close the file              fobj.close()
+
+
+>>> open('emp.csv','r')
+<_io.TextIOWrapper name='emp.csv' mode='r' encoding='cp1252'>
+>>>
+>>> open('emp.log','r')
+Traceback (most recent call last):
+  File "<python-input-98>", line 1, in <module>
+    open('emp.log','r')
+    ~~~~^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'emp.log'
+>>>
+>>> open("C:\\Users\\user\\emp.csv","r")
+Traceback (most recent call last):
+  File "<python-input-100>", line 1, in <module>
+    open("C:\\Users\\user\\emp.csv","r")
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\user\\emp.csv'
+>>>
+>>> open("C:\\Users\\karth\\emp.csv","r")
+<_io.TextIOWrapper name='C:\\Users\\karth\\emp.csv' mode='r' encoding='cp1252'>
+>>>
+>>> open(r"C:\Users\karth\emp.csv","r")
+<_io.TextIOWrapper name='C:\\Users\\karth\\emp.csv' mode='r' encoding='cp1252'>
+>>>
+>>> open(r"C:\Users\karth\emp.csv")
+<_io.TextIOWrapper name='C:\\Users\\karth\\emp.csv' mode='r' encoding='cp1252'>
+>>>
+
+
+>>> fobj = open('emp.csv','r')
+>>>
+>>> fobj.read()
+'eid,ename,edept,ecity,ecost\n101,raj,sales,pune,1000\n102,leo,prod,bglore,2301\n230,raj,prod,pune,2300\n450,shan,sales,bglore,3401\n542,anu,HR,mumbai,4590\n321,bibu,sales,hyd,5419\n651,ram,hr,bglore,3130\n541,leo,admin,chennai,4913\n652,karthik,prod,bglore,3490\n742,anu,sales,mumbai,5901\n821,shan,prod,hyd,6000\n151,ram,prod,bglore,3000\n241,vijay,admin,chennai,3450\n252,anish,Hr,mumbai,5490'
+>>>
+>>> fobj = open('emp.csv','r')
+>>> fobj.readlines()
+['eid,ename,edept,ecity,ecost\n', '101,raj,sales,pune,1000\n', '102,leo,prod,bglore,2301\n', '230,raj,prod,pune,2300\n', '450,shan,sales,bglore,3401\n', '542,anu,HR,mumbai,4590\n', '321,bibu,sales,hyd,5419\n', '651,ram,hr,bglore,3130\n', '541,leo,admin,chennai,4913\n', '652,karthik,prod,bglore,3490\n', '742,anu,sales,mumbai,5901\n', '821,shan,prod,hyd,6000\n', '151,ram,prod,bglore,3000\n', '241,vijay,admin,chennai,3450\n', '252,anish,Hr,mumbai,5490']
+>>>
+>>> fobj.readlines()
+[]
+>>> fobj = open('emp.csv','r')
+>>> fobj.read()
+'eid,ename,edept,ecity,ecost\n101,raj,sales,pune,1000\n102,leo,prod,bglore,2301\n230,raj,prod,pune,2300\n450,shan,sales,bglore,3401\n542,anu,HR,mumbai,4590\n321,bibu,sales,hyd,5419\n651,ram,hr,bglore,3130\n541,leo,admin,chennai,4913\n652,karthik,prod,bglore,3490\n742,anu,sales,mumbai,5901\n821,shan,prod,hyd,6000\n151,ram,prod,bglore,3000\n241,vijay,admin,chennai,3450\n252,anish,Hr,mumbai,5490'
+>>>
+>>> fobj.read()
+''
+>>>
+----------------------------------------------------------------------
+
+2. Read data from Keyboard -->Python -- Create a new file and write data to FILE
+					# not using monitor 
+
+create a new file and write
+         --------
+	 if file is already exists ->overwrite/erase the existing data
+
+
+>>> open('r1.log','w')
+<_io.TextIOWrapper name='r1.log' mode='w' encoding='cp1252'>
+>>>
+>>> open('r1.log','w')
+<_io.TextIOWrapper name='r1.log' mode='w' encoding='cp1252'>
+>>>
+>>>
+>>> wobj = open('r1.log','w')
+>>> #####
+>>>
+>>> # wobj.write("SingleString\n")
+>>>
+>>> wobj.write("data1\n")
+6
+>>> wobj.write("sample data\n")
+12
+>>> wobj.write(3242432)
+Traceback (most recent call last):
+  File "<python-input-13>", line 1, in <module>
+    wobj.write(3242432)
+    ~~~~~~~~~~^^^^^^^^^
+TypeError: write() argument must be str, not int
+>>> wobj.write("3242432")
+7
+>>> cost = 3424.32
+>>> wobj.write("cost\n")
+5
+>>> wobj.write(str(cost)+"\n")
+8
+>>> ename = "Raj"
+>>> dept = "sales"
+>>> wobj.write(f"Emp name is:{ename} working dept:{dept}\n")
+35
+>>> wobj.close()
+>>>
+>>>
+>>> wobj = open("r1.log","w")
+>>>
+>>> wobj = open("r1.log","a")
+>>>
+---------------------------------------------------------------------------------
+3. Read - data from <FILE-1> -->python -- Create a newfile and write data to FILE
+					# not using IO devices
+
+
+fobj = open('inputFile','r')
+wobj = open('resultFile','w')
+
+s = fobj.read()
+wobj.write(s)
+
+fobj.close()
+wobj.close()
+---------------------// like file copy command (ex: cp source target)
+
+
+-------------------------------------------------------------------------------
+# another way 
+#-----------------
+# context manager 
+# -----------------
+# with as - keywords
+  --------
+
+fobj = open('filename','r')
+fobj.read()/fobj.readlines()
+fobj.close()
+----------------Vs
+
+with open('filename','r') as fobj:
+	s=fobj.read()/L=fobj.readlines()
+	print(s)
+
+## Note: there is no need to write obj.close() method
+
+
+------------------
+def f1():
+	fobj = open('r1.log','r')
+	s = fobj.read()
+	fobj.close()
+	print(s)
+-------------------Vs
+
+def f2(arg):
+	fobj = open(arg,'r')
+	s = fobj.read()
+	fobj.close()
+	print(s)
+
+f2('r1.log')  # function call with argument
+f2('r2.log')  # function call with argument
+f2('r3.log')  # function call with argument
+
+
+>>> def f1(a1,a2):
+...     print("a1=",a1,"a2=",a2)
+...
+>>> f1()
+Traceback (most recent call last):
+  File "<python-input-4>", line 1, in <module>
+    f1()
+    ~~^^
+TypeError: f1() missing 2 required positional arguments: 'a1' and 'a2'
+>>> f1(10)
+Traceback (most recent call last):
+  File "<python-input-5>", line 1, in <module>
+    f1(10)
+    ~~^^^^
+TypeError: f1() missing 1 required positional argument: 'a2'
+>>> f1(20,10,20)
+Traceback (most recent call last):
+  File "<python-input-6>", line 1, in <module>
+    f1(20,10,20)
+    ~~^^^^^^^^^^
+TypeError: f1() takes 2 positional arguments but 3 were given
+>>> f1(10,20)
+a1= 10 a2= 20
+>>> f1(10,True)
+a1= 10 a2= True
+>>> f1(10,[])
+a1= 10 a2= []
+>>> f1({},[])
+a1= {} a2= []
+>>>
+>>> def f1(a1=True,a2=50):
+...     print("a1=",a1,"a2=",a2)
+...
+>>>
+>>> f1()
+a1= True a2= 50
+>>> f1(500)
+a1= 500 a2= 50
+>>>
+>>> f1(500,"Data1")
+a1= 500 a2= Data1
+>>>
+>>>
+>>> def f1(a1,a2,a3,a4=True,a5):
+  File "<python-input-20>", line 1
+    def f1(a1,a2,a3,a4=True,a5):
+                            ^^
+SyntaxError: parameter without a default follows parameter with a default
+>>>
+>>> def f1(a1,a2,a3,a4=True,a5=0):
+...     print(a1,a2,a3,a4,a5)
+...
+>>> f1()
+Traceback (most recent call last):
+  File "<python-input-23>", line 1, in <module>
+    f1()
+    ~~^^
+TypeError: f1() missing 3 required positional arguments: 'a1', 'a2', and 'a3'
+>>>
+>>> f1(10,20,30)
+10 20 30 True 0
+>>>
+>>> f1(10,20,30,40)
+10 20 30 40 0
+>>> f1(10,20,30,40,50)
+10 20 30 40 50
+>>>
+>>> f1(10,20,30,40,50,60)
+Traceback (most recent call last):
+  File "<python-input-30>", line 1, in <module>
+    f1(10,20,30,40,50,60)
+    ~~^^^^^^^^^^^^^^^^^^^
+TypeError: f1() takes from 3 to 5 positional arguments but 6 were given
+>>>
+>>>
+>>> L=[10,20,30,40,50,60,70,80]
+>>>
+>>> L.append()
+Traceback (most recent call last):
+  File "<python-input-35>", line 1, in <module>
+    L.append()
+    ~~~~~~~~^^
+TypeError: list.append() takes exactly one argument (0 given)
+>>> L.append(1,2)
+Traceback (most recent call last):
+  File "<python-input-36>", line 1, in <module>
+    L.append(1,2)
+    ~~~~~~~~^^^^^
+TypeError: list.append() takes exactly one argument (2 given)
+>>>
+>>> L.append(5)
+>>> L
+[10, 20, 30, 40, 50, 60, 70, 80, 5]
+>>> # def append(arg):
+>>>
+>>> L.pop()
+5
+>>> L.pop(2)
+30
+>>> L.pop(1,2)
+Traceback (most recent call last):
+  File "<python-input-44>", line 1, in <module>
+    L.pop(1,2)
+    ~~~~~^^^^^
+TypeError: pop expected at most 1 argument, got 2
+>>>
+>>> # def pop(index=-1):
+>>> #         --------
+>>>
+>>>
+>>> def f1(*a):
+...     print(type(a))
+...     print(a)
+...
+>>>
+>>> f()
+>>>
+>>>
+>>> L = ['csh','psh','bash','zsh','ash','tcsh']
+>>>
+>>> L.sort()
+>>>
+>>>
+>>> s = "hello"
+>>>
+>>> s.upper()
+'HELLO'
+>>> s
+'hello'
+>>>
+>>> L=[]
+>>> L
+[]
+>>>
+>>> L.append("D1")
+>>> L
+['D1']
+>>>
+>>> def f1(a):
+...     a.append("Data1")
+...
+>>> L=[]
+>>> L=[10,20,30]
+>>> L
+[10, 20, 30]
+>>>
+>>> f1(L)
+>>> L
+[10, 20, 30, 'Data1']
+>>>
+
+-------------------------
+>>> a = 10
+>>> b = 10
+>>>
+>>> a is b
+True
+>>> a is not b
+False
+>>>
+>>> a = [10,20,[30,40],50]
+>>>
+>>> b = a
+>>>
+>>> a is b
+True
+>>> a
+[10, 20, [30, 40], 50]
+>>> b
+[10, 20, [30, 40], 50]
+>>> a.append(60)
+>>> b
+[10, 20, [30, 40], 50, 60]
+>>> a
+[10, 20, [30, 40], 50, 60]
+>>>
+shallowcopy
+---------------
+ - create a new outer object 
+
+>>> a = [10,20,[30,40],50]
+>>>
+>>> import copy
+>>>
+>>> b = copy.copy(a)
+>>>
+>>> a is b
+False
+>>> a
+[10, 20, [30, 40], 50]
+>>> b
+[10, 20, [30, 40], 50]
+>>>
+>>> a.append(60)
+>>> a
+[10, 20, [30, 40], 50, 60]
+>>>
+>>> b
+[10, 20, [30, 40], 50]
+>>> a[2] is b[2]
+True
+>>>
+>>> a[2].append(45)
+>>> b
+[10, 20, [30, 40, 45], 50]
+>>>
+>>>
+## DeepCopy
+
+>>> a = [10,20,[30,40],50]
+>>>
+>>> b = copy.deepcopy(a) # deepcopy
+>>>
+>>> a is b
+False
+>>>
+>>> a[2] is b[2]
+False
+>>>
+>>> a.append(60)
+>>> a[2].append(45)
+>>>
+>>> b
+[10, 20, [30, 40], 50]
+>>>
+##################################################################################
+Task
+====
+1. Modify ATM pin test
+
+ -> create a pin_history.log file - append mode
+ |
+ -> use ATM pin number validation - maximum limit is 3
+	->Valid PIN ->update pin details to pin_history.log
+			     -----------
+			     Success - <count> + Date/Time <== time.ctime()
+	|
+	->Invalid PIN -> update - user_input_pin + Date/Time to pin_history.log file
+ |
+ |
+ -> pin is blocked 
+     -> update to pin_history.log file + Date/Time
+---------------------------------------------------------//
+|
+2. Create a new function - pin_test()
+			  ------------
+--------------------------------------------------------// 
+
+file: network.cfg file
+Interface=eth0
+Type=ethernet
+onboot=no
+bootproto=dhcp
+DOMAIN=example.com
+-------------------
+ |
+convert to static config file
+ |
+update the interface to eth1
+update onboot ->yes
+update bootproto ->static
+|
+add IPADDR ->192.168.1.10
+add PREFEX ->24
+add nameserver -> DNS1=122.33.344.555
+------------------------------------------//dict operation
+|
+Create a new config file
+Write updated network configuration(static configuration)details to new_network.cfg file
+
+new_network.cfg
+Type=ethernet
+Interface=eth1
+onboot=yes
+bootproto=static
+IPADDR=192.168.1.10
+PREFIX=24
+DNS1=122.33.344.555
+DOMAIN=example.com
+
+step 1: create an empty dict
+|
+step 2: file handling - read data from network.cfg file - line by line
+	 - split each line into multiple values 
+	 - based on = (ex:  'Type=ethernet'.split("=") ->['Type','ethernet'])
+			    				    0	     1
+	 - add data to dictionary 
+	               ----------
+			List of 0th index Key ; List of 1st index Value
+
+step 3: use pprint.pprint(dict_Data) - display network data
+|
+step 4: dict operation
+|
+step 5: use pprint.pprint(updated_data) - display updated dict 
+|
+step 6: file handling - create a newConfig file - write updated dict contents to newFile
+			(same network config format)
+------------------------------------------------------------------------------------
+
+python module
+--------------
+|-> python source file 
+	  
+|-> reusability - we can reuse an existing variable/function/class
+
+ex: import pprint
+    import time
+    ..
+
+|-> import <moduleName>
+    <moduleName>.<member>
+
+import time
+time.ctime()
+
+file: ab.py					file: p1.py
+-----------------------------------		===========
+app = "crm"					import ab
+port = 3005					print(f"App name is:{ab.app}")
+						===============================
+def f1():					file: p2.py
+	return 200				___________
+def f2():					import ab
+	return "Welcome"			if(ab.port == 200):
+----------------------------------			print("Done")
+						rv = ab.f1()
+						print(rv)
+						_____________________________
+
+file:template_code.py				file: p3.py
+----- ===============				--------------
+def display():					import template_code
+	return "Hello"				template_code.display()
+------------------------			Vs
+						import template_code as tc
+						tc.display()
+						-------------------------------
+Dir1/						file: p4.py
+   |__Dir2/					-------------
+	|___Dir3/				import Dir1.Dir2.Dir3.template_code
+	      |___template_code.py		Dir1.Dir2.Dir3.template_code.display()
+		  ==================		------------------------------------//Vs
+		  def display():	 import Dir1.Dir2.Dir3.template_code as tc
+			pass		  tc.display() 
+					-------------------------------//
+
+
+
+sys - python info
+os  - os commands 
+json - json data
+pprint - display complex data in dumper/pretty view
+...
+
+E:						E:
+|___ file: ab.py				|___file: p1.py
+-------------------				==================
+def display():					import ab
+    print("This is display block")		ab.display()
+---------------------				=====================
+E:\>python ab.py				E:\>python p1.py
+E:\>  <empty> - there is no output		This is display block
+---------------------				E:\>
+						|___Demo1/
+							|___file: p2.py
+							    ============
+							    import ab
+							    ab.display()
+							    ================
+							E:\Demo1\>python p2.py
+							ModuleNotFoundError
+					E:\Demo1>python 
+					>>> import ab
+					ModuleNotFound Error
+
+					>>> import os
+					>>> import sys
+					>>> import math
+ 
+------------------------------------------------------------------------------
+import <module>
+
+1st - python - search the module path location ?
+		--------------------------
+		 |->refer sys.path 
+				|
+				2nd -> file: ab.py -> ab.pyc 
+						     ---------//
+python 3.x __pycache__/
+		   |___ ab.pyc
+	
+
+file: p2.py
+|
+import sys
+sys.path.append("E:\\")
+import ab
+ab.display()
+----------------------
+E:\Demo1\> python p2.py
+	   This is display block
+
+env variable => PYTHONPATH
+
+Linux -> ~/.bashrc
+	export PYTHONPATH="/home/userA/project/Demo1"
+--------------------------------------------------------------------------
+import os
+
+os.system("whoami")
+0
+os.system("sleep 5")
+1
+os.system("powershell sleep 10")
+0
+os.popen("whoami")
+<os._wrap_close object at 0x0000021545C0BCA0>
+
+obj = os.popen("whoami")
+obj.read()
+'paka\\karth\n'
+
+obj = os.popen("whoami")
+obj.readlines()
+['paka\\karth\n']
+
+----------------------------------------------------------
+pip install <module>
+
+or
+Linux/mac -> pip3 install <module>
+
+pip show <module>
+pip list
+====================================================================================
+>>> import demo30
+>>> help(demo30)
+Help on module demo30:
+
+NAME
+    demo30 - this is network configuration
+
+FUNCTIONS
+    f1()
+        return empty dict
+
+    f2(network_params)
+        This f2 block recvied dict name as argument
+        perform network static configuration
+
+    f3(network_params)
+        display network parameters
+
+    f4(network_params)
+        dict operation
+
+    f5(network_params)
+        write new config file from updated dict
+
+FILE
+    c:\users\karth\karthik\python-class\cisco-training\2026\demo30.py
+
+
+>>>
+>>>
+>>> help(demo30.f1)
+Help on function f1 in module demo30:
+
+f1()
+    return empty dict
+
+>>> help(demo30.f2)
+Help on function f2 in module demo30:
+
+f2(network_params)
+    This f2 block recvied dict name as argument
+    perform network static configuration
+
+>>> help(demo30.f3)
+Help on function f3 in module demo30:
+
+f3(network_params)
+    display network parameters
+
+>>> import demo30
+>>> demo30.f1()
+{}
+>>>
+>>> v1 = demo30.f1()
+>>> demo30.f2(v1)
+{'Interface': 'eth0', 'Type': 'ethernet', 'onboot': 'no', 'bootproto': 'dhcp', 'DOMAIN': 'example.com'}
+>>>
+>>> v2 = demo30.f2(v1)
+>>>
+>>> demo30.f3(v2)
+{'DOMAIN': 'example.com',
+ 'Interface': 'eth0',
+ 'Type': 'ethernet',
+ 'bootproto': 'dhcp',
+ 'onboot': 'no'}
+>>>
+>>> v3 = demo30.f3(v2)
+{'DOMAIN': 'example.com',
+ 'Interface': 'eth0',
+ 'Type': 'ethernet',
+ 'bootproto': 'dhcp',
+ 'onboot': 'no'}
+>>>
+>>> demo30.f3(v2)
+{'DOMAIN': 'example.com',
+ 'Interface': 'eth0',
+ 'Type': 'ethernet',
+ 'bootproto': 'dhcp',
+ 'onboot': 'no'}
+>>>
+>>> demo30.f4(v2)
+{'Interface': 'eth1', 'Type': 'ethernet', 'onboot': 'yes', 'bootproto': 'static', 'DOMAIN': 'example.com', 'IPADD': '192.168.1.10', 'PREFIX': 24, 'DNS1': '122.33.344.555'}
+>>>
+>>> v3 = demo30.f4(v2)
+>>>
+>>> demo30.f3(v3)
+{'DNS1': '122.33.344.555',
+ 'DOMAIN': 'example.com',
+ 'IPADD': '192.168.1.10',
+ 'Interface': 'eth1',
+ 'PREFIX': 24,
+ 'Type': 'ethernet',
+ 'bootproto': 'static',
+ 'onboot': 'yes'}
+>>>
+>>> demo30.f5(v3)
+>>>
+>>>
+>>>
+>>> import demo30 as d30
+>>>
+>>> d30.f1()
+{}
+>>>
+###############################
+sd_app/ <-- project folder
+    |
+    |--> p1.py p2.py p3.py  ... p50.py
+    |--> Sub1/
+	    |-->p51.py p52.py 
+    |--> Sub2/
+	    |__Sub3/
+		|_____p53.py p54.py p55.py 
+======================================================================
+---------------------------------------
+To run this sd_app project - import all the 55 python files
+
+import p1
+import p2
+..
+import p55
+----------//not-correct way
+
+import <moduleName>
+	----------
+
+import <directory>
+<directory>.fx()
+------------------------------------------------------------------------
