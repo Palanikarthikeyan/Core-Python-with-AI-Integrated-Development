@@ -1,0 +1,226 @@
+Python program
+--------------
+ |-> Procedural programming 
+ |
+ |-> Functional programming
+ |
+ |-> Object oriented programming
+ 
+
+
+>>> L = []
+>>> def f1(a):
+...     return a+100
+...
+>>> for var in [10,20,30,40,50]:
+...     r = f1(var)
+...     L.append(r)
+...
+>>> print(L)
+[110, 120, 130, 140, 150]
+>>>
+>>> list(map(lambda a:a+100,[10,20,30,40,50]))
+[110, 120, 130, 140, 150]
+>>> d={}
+>>>
+>>> d['K1'] = list(map(lambda a:a+100,[10,20,30,40,50]))
+>>> d
+{'K1': [110, 120, 130, 140, 150]}
+>>>
+
+Functional programming
+-------------------------
+function(anotherfunction) - To solve problems by applying functions to data
+
+map()
+filter()
+
+1. lambda
+2. comprehension 
+3. generator
+|
+4. map,filter
+-----------------------------------------------------------------------------
+
+lambda
+=======
+1. lambda - python keyword
+2. small anonymous function
+         ------------------//unamed function
+3. Syntax:-
+   --------
+   lambda <list of args>:basicOperation
+
+4. logic: normal function call with arguments and return some value //
+
+def NamedFunction(arg):
+    return <Value>
+
+
+
+
+>>> def f1(a1,a2):
+...     return a1+a2
+...
+>>> f1(10,20)
+30
+>>>
+>>> lambda a1,a2:a1+a2
+<function <lambda> at 0x0000014A8509A560>
+>>> f2 = lambda a1,a2:a1+a2
+>>> f2(10,20)
+30
+>>>
+>>> def f3(a):
+...     return a.upper()
+...
+>>> f3('hello')
+'HELLO'
+>>>
+>>> f4 = lambda a:a.upper()
+>>> f4('hello')
+'HELLO'
+>>>
+>>> f5 = lambda a,b:a >b
+>>> f5(10,20)
+False
+>>> f5(100,20)
+True
+>>> f6 = lambda a: 'sales' in a
+>>> f6('101,raj,sales,pune')
+True
+>>> def fx(a):
+...     if(a > 100):
+...         return a + 100
+...     elif(a < 100):
+...         return a + 50
+...     else:
+...         return 1000
+...
+>>> fx(150)
+250
+>>> fx(90)
+140
+
+>>>
+>>> f6 = lambda a:fx(a)
+>>>
+>>> f6(150)
+250
+>>> f6(90)
+140
+>>>
+>>> emps = [('raj',5000),('kumar',70000),('anil',45000)]
+
+>>> sorted(emps)
+[('anil', 45000), ('kumar', 70000), ('raj', 5000)]
+>>>
+>>>
+
+>>> sorted(emps)
+[('anil', 45000), ('kumar', 70000), ('raj', 5000)]
+>>>
+>>>
+>>> sorted(emps,key=lambda a:a[1])
+[('raj', 5000), ('anil', 45000), ('kumar', 70000)]
+>>>
+>>>
+>>> help(sorted)
+Help on built-in function sorted in module builtins:
+
+sorted(iterable, /, *, key=None, reverse=False)
+    Return a new list containing all items from the iterable in ascending order.
+
+    A custom key function can be supplied to customize the sort order, and the
+    reverse flag can be set to request the result in descending order.
+
+>>> sorted(emps,key=lambda a:a[1],reverse=True)
+[('kumar', 70000), ('anil', 45000), ('raj', 5000)]
+>>>
+======================================================================================
+comprehension 
+----------------
+list comprehension is list append operation
+-------------------        =======
+>>> L = []
+>>> for var in [10,20,30,40,50]:
+...     r = var + 100
+...     L.append(r)
+...
+>>> L
+[110, 120, 130, 140, 150]
+>>>
+>>> # [final value for iterable]
+>>> #              -----(1)----
+>>> #  --(2)---
+>>>
+>>>
+>>> [var+100 for var in [10,20,30,40,50]]
+[110, 120, 130, 140, 150]
+>>>
+
+>>> [var+100 for var in [10,20,30,40,50] if var >30]
+[140, 150]
+>>>
+>>> L = []
+>>> for var in [10,20,30,40,50]:
+...     if(var > 30):
+...         r = var + 100
+...         L.append(r)
+...     else:
+...         r = var + 500
+...         L.append(r)
+...
+>>> L
+[510, 520, 530, 140, 150]
+>>>
+>>> [var+100 if var >30 else var+500 for var in [10,20,30,40,50]]
+[510, 520, 530, 140, 150]
+>>>
+
+>>> {var: var+100 for var in [10,20,30,40,50]}
+{10: 110, 20: 120, 30: 130, 40: 140, 50: 150}
+>>>
+>>> emps=[{"name":"Raj","salary":50000},{"name":"Kumar","salary":70000},{"name":"Anu\","salary":60000}]
+>>>
+>>> for emp in emps:
+...     print(emp)
+...
+{'name': 'Raj', 'salary': 50000}
+{'name': 'Kumar', 'salary': 70000}
+{'name': 'Anu', 'salary': 60000}
+>>> for emp in emps:
+...     for var in emp:
+...         print(var)
+...
+name
+salary
+name
+salary
+name
+salary
+>>>
+>>> ## "Raj":50000
+>>>
+>>> {emp["name"]:emp["salary"] for emp in emps} # dict comprehension 
+{'Raj': 50000, 'Kumar': 70000, 'Anu': 60000}
+>>>
+>>>
+>>>
+>>> nos = [1,2,2,3,3,4,4,5]
+>>>
+>>> {v:v+100 for v in nos}
+{1: 101, 2: 102, 3: 103, 4: 104, 5: 105}
+>>>
+>>>
+>>> {v+100 for v in nos}   # set comprehension
+{101, 102, 103, 104, 105}  
+>>>
+>>> {1,2,3}
+{1, 2, 3}
+>>>
+>>> type({1,2,3})
+<class 'set'>
+>>>
+
+------------------------------------------------
