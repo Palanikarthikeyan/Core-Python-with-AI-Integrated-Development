@@ -322,3 +322,76 @@ StopIteration
            ('Demo1\\Sub1\\Sub2\\sub3', [], [])]}
 >>>
 ===============================================================================================
+>>> L=[]
+>>>
+>>> def f1(a):
+...     return a+100
+...
+>>>
+>>> for var in [10,20,30,40,50]:
+...     r = f1(var)
+...     L.append(r)
+...
+>>> L
+[110, 120, 130, 140, 150]
+>>>
+>>> # map(function,collection) ->generator
+>>>
+>>> map(lambda a:a + 100,[10,20,30,40,50])
+<map object at 0x0000014A86B7DDC0>
+>>>
+>>> list(map(lambda a:a + 100,[10,20,30,40,50]))
+[110, 120, 130, 140, 150]
+>>>
+>>>
+>>> obj = map(lambda a:a + 100,[10,20,30,40,50])
+>>> for var in obj:
+...     print(var)
+...
+110
+120
+130
+140
+150
+>>> obj = map(lambda a:a + 100,[10,20,30,40,50])
+>>> next(obj)
+110
+>>> next(obj)
+120
+>>> next(obj)
+130
+>>> next(obj)
+140
+>>> next(obj)
+150
+>>> next(obj)
+Traceback (most recent call last):
+  File "<python-input-225>", line 1, in <module>
+    next(obj)
+    ~~~~^^^^^
+StopIteration
+>>>
+>>>
+>>>
+>>> list(map(lambda a:a + 100,[10,20,30,40,50]))
+[110, 120, 130, 140, 150]
+>>>
+>>> list(map(lambda a:a >25,[10,20,30,40,50]))
+[False, False, True, True, True]
+>>>
+>>> list(filter(lambda a:a >25,[10,20,30,40,50]))
+[30, 40, 50]
+>>>
+>>>
+>>> L=[10,20,30,40,50]
+>>> t = 0
+>>> for var in L:
+...     t = t + var
+...
+>>> t
+150
+>>> import functools
+>>> functools.reduce(lambda a,b:a+b,L)
+150
+>>>
+======================================================================================
