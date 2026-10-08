@@ -224,3 +224,101 @@ salary
 >>>
 
 ------------------------------------------------
+
+>>> f2()
+<generator object f2 at 0x0000014A86B41490>
+>>>
+>>> obj = f2()
+>>>
+>>> next(obj)
+10
+>>> next(obj)
+20
+>>> next(obj)
+('D1', 'D2')
+>>> next(obj)
+('D1', ['F1', 'F2'], {'K1': 'V1'})
+>>> next(obj)
+Traceback (most recent call last):
+  File "<python-input-160>", line 1, in <module>
+    next(obj)
+    ~~~~^^^^^
+StopIteration
+>>>
+>>> obj = f2()
+>>> for var in obj:
+...     print(var)
+...
+10
+20
+('D1', 'D2')
+('D1', ['F1', 'F2'], {'K1': 'V1'})
+>>>
+>>> obj = f2()
+>>> list(obj)
+[10, 20, ('D1', 'D2'), ('D1', ['F1', 'F2'], {'K1': 'V1'})]
+>>>
+
+# call a function ->operation ->returns collective_data
+#                               ------------------------//object - iterator
+#                               ==============================================//Generator
+#                                Excel range of cells ->object
+#                                DB - Select query ->object
+#                                recursive / deep <or> depth search <or> nested call ->object
+
+>>> import os
+>>> os.listdir("Demo1")
+['D1', 'D2', 'p1.log', 'r1.log', 'r2.txt', 'Sub1', 'test.log']
+>>>
+>>> os.walk("Demo1")
+<generator object walk at 0x0000019FF9370A50>
+>>>
+>>> gen_obj = os.walk("Demo1")
+>>>
+>>> for var in gen_obj:
+...     print(var)
+...
+('Demo1', ['D1', 'D2', 'Sub1'], ['p1.log', 'r1.log', 'r2.txt', 'test.log'])
+('Demo1\\D1', ['L1', 'L2', 'L3'], ['test.log'])
+('Demo1\\D1\\L1', [], ['p1.c', 'test.log'])
+('Demo1\\D1\\L2', [], ['process.log'])
+('Demo1\\D1\\L3', [], ['dev.log'])
+('Demo1\\D2', ['S1', 'S2'], [])
+('Demo1\\D2\\S1', [], ['r2.txt'])
+('Demo1\\D2\\S2', [], ['r3.txt'])
+('Demo1\\Sub1', ['Sub2'], [])
+('Demo1\\Sub1\\Sub2', ['sub3'], [])
+('Demo1\\Sub1\\Sub2\\sub3', [], [])
+>>>
+>>> def mywalk():
+...     yield "D1",["S1","S2","S3"],["F1","F2","F3","F4"]
+...
+>>> gen_obj = mywalk()
+>>>
+>>> next(gen_obj)
+('D1', ['S1', 'S2', 'S3'], ['F1', 'F2', 'F3', 'F4'])
+>>>
+>>>
+>>> gen_obj = os.walk("Demo1")
+
+>>> gen_obj = os.walk("Demo1")
+>>>
+>>> d={'Demo1':list(gen_obj)}
+>>>
+>>> import pprint
+>>> pprint.pprint(d)
+{'Demo1': [('Demo1',
+            ['D1', 'D2', 'Sub1'],
+            ['p1.log', 'r1.log', 'r2.txt', 'test.log']),
+           ('Demo1\\D1', ['L1', 'L2', 'L3'], ['test.log']),
+           ('Demo1\\D1\\L1', [], ['p1.c', 'test.log']),
+           ('Demo1\\D1\\L2', [], ['process.log']),
+           ('Demo1\\D1\\L3', [], ['dev.log']),
+           ('Demo1\\D2', ['S1', 'S2'], []),
+           ('Demo1\\D2\\S1', [], ['r2.txt']),
+           ('Demo1\\D2\\S2', [], ['r3.txt']),
+           ('Demo1\\Sub1', ['Sub2'], []),
+           ('Demo1\\Sub1\\Sub2', ['sub3'], []),
+           ('Demo1\\Sub1\\Sub2\\sub3', [], [])]}
+>>>
+===============================================================================================
