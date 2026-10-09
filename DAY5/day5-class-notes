@@ -603,4 +603,248 @@ customers.csv
 >>> re.split("[^a-zA-Z0-9]",s)
 ['root', 'x', 'bin', 'bash', 'linux', 'device', '345']
 >>>
+-------------------------------------------------------------	
 
+
+
+>>> re.sub('sales','','101,raj,sales,pune')
+'101,raj,,pune'
+>>>
+>>> re.sub('sales.','','101,raj,sales,pune')
+'101,raj,pune'
+>>>
+>>>
+>>> s='120GB'
+>>>
+>>> re.findall('[A-Za-z]',s)
+['G', 'B']
+>>>
+>>> s='120Gb'
+>>> re.findall('[A-Za-z]',s)
+['G', 'b']
+>>>
+>>> re.sub('[A-Za-z]','',s)
+'120'
+>>>
+
+--------------------------------------------------------
+Cpython
+--------
+In Python everything is a class<-->object.
+
+int - class
+float - class
+..
+
+Process = Data + Address
+	  ----   ========
+	  |
+      Thread  
+
+import threading <== module
+	|
+	threading.Thread <== class - constructor - keyword arguments
+					|->target=<name-of-thread>,args=(tuple of args)
+
+
+tobj = threading.Thread(target=f1)
+-----
+tobj.start()  
+
+tobj.join() - waits for thread to finish 
+
+
+----------------------------------------------------------------------
+ThreadPoolExecutor - It manages a pool of worker threads to execute asynchronous tasks.
+
+with - ContextManager 
+
+
+from concurrent.futures import ThreadPoolExecutor
+
+
+with ThreadPoolExecutor(max_workers = <count>) as executor:
+	# submit tasks here
+
+
+10URLs ->downloads 
+------
+
+each request take 2secs and request can overlap.
+ThreadPoolExecutor(max_workers=5)
+------------------------------------
+ |-> how long will the downloadable take?
+
+Step-1: Calculate without multithreading (apply sequential execution)
+----
+	  10 X 2 = 20 seconds
+	
+Only one url download at a time
+----------------------------------
+
+Step 2: Calculate with ThreadPoolExecutor
+ 10 URLs 
+ 5 workers
+ 2 secs per download
+
+ [URL1] [URL2] [URL3] [URL4] [URL5]  // 2secs
+ [URL6] [URL7] [URL8] [URL9] [URL10]  // 2secs
+				--------------------
+					4 secs
+				------------------
+
+ 10 URLs
+-----------  X   2 secs  = 4 secs
+  5 workers  
+
+No.of tasks
+------------ X Timer per task  
+ workers 
+------------------------------------
+##################################################################################################
+
+| Python		  <DB-Module>	DB - SQL 
+| ---------      
+|  'select *from table'			sql> select *from table;
+   |__________________|			+---------------------------+
+	|->str				|      |     |        |     |
+					+---------------------------+
+					|			    |
+					+---------------------------+
+						|
+	-------------<--------------------------
+	 tuple()
+	 [(),(),()]
+	 <generatorObj>
+
+1st -> import <DB-Module>    (ex: import oracledb       import sqlite3)
+|
+2nd -> <DB-Module>.connect(<connection-parameters>) -> connection_object
+|
+3rd -> connection_object.cursor() ->cursor_object
+|
+4th -> cursor_object.execute(SQL)
+			     ===
+				|------------- select *from table; // DB ->output to input to python
+							|
+		--------------<-----------------------
+	 cursor_object.fetchone() -> ()
+	 cursor_object.fetchall() -> [(),(),()..()]
+	 cursor_object.fetchmany(n=3) -> [(),(),()]
+		<or>
+	 cursor_object <- generator
+	 --------------
+	  1. next(cursor_object) <or> 2. for loop  <or> 3. typecast to list list(cursor_object)
+ 
+5th -> connection_object.commit()
+|
+6th -> connection_object.close()
+=====================================================================================================
+
+>>> import sqlite3
+>>>
+>>> conn = sqlite3.connect("prod.db")
+>>>
+>>> sth = conn.cursor()
+>>>
+>>> sth.execute("create table prod(id NUMBER,pname TEXT,cost NUMBER)")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> sth.execute("insert into prod(id,pname,cost) values(101,'pA',1000)")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> sth.execute("insert into prod(id,pname,cost) values(102,'pB',2000)")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>> sth.execute("insert into prod(id,pname,cost) values(103,'pC',3000)")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> va = 104
+>>> vb = 'pD'
+>>> vc = 4000
+>>> sth.execute("insert into prod(id,pname,cost) values(?,?,?)",(va,vb,vc))
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> sth.execute("select *from prod")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> sth.fetchone()
+(101, 'pA', 1000)
+>>> sth.fetchone()
+(102, 'pB', 2000)
+>>> sth.fetchone()
+(103, 'pC', 3000)
+>>> sth.fetchone()
+(104, 'pD', 4000)
+>>> sth.fetchone()
+>>>
+>>> sth.execute("select *from prod")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>> sth.fetchall()
+[(101, 'pA', 1000), (102, 'pB', 2000), (103, 'pC', 3000), (104, 'pD', 4000)]
+>>>
+>>>
+>>> sth.execute("select *from prod")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> sth.fetchmany(2)
+[(101, 'pA', 1000), (102, 'pB', 2000)]
+>>>
+>>>
+>>> sth.execute("select *from prod")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> for var in sth:
+...     print(var)
+...
+(101, 'pA', 1000)
+(102, 'pB', 2000)
+(103, 'pC', 3000)
+(104, 'pD', 4000)
+>>>
+>>>
+>>> sth.execute("select *from prod")
+<sqlite3.Cursor object at 0x000002640AA58EC0>
+>>>
+>>> list(sth)
+[(101, 'pA', 1000), (102, 'pB', 2000), (103, 'pC', 3000), (104, 'pD', 4000)]
+>>>
+>>> conn.commit()
+>>>
+>>> conn.close()
+>>>
+
+------------------------------------------------------------------------------------------------
+
+numpy - numerical array 
+      - computation
+	 |
+	index based + numpy methods //mathematical functions
+|
+
+pandas - data analysis 
+------
+	|-> DataFrame - Table
+
+	+------------------------------+
+	| F1  | F2   | F3  |  F4 .. |Fn |
+	+-------------------------------+
+	|_____|_____|_______|________|___|
+	|_____|_____|_______|________|___|
+	|_____|_____|_______|________|___|
+	|_____|_____|_______|________|___|
+	|_____|_____|_______|________|___|
+	|     |     |       |        |   |
+	+--------------------------------+
+
+pandas.DataFrame({}) ->df //mutable => inplace=True
+
+matplotlib.pyplot - visualization
+-----------------
+plot()
+bar()
+barh()
+pie()
+box()
+--------//visualization
+
+################################################################################################################
